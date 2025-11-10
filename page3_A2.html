@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Kashmir - Culture & Cuisine</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Georgia', serif;
+        color: #1a1a1a;
+        overflow-x: hidden; /* Prevent horizontal overflow */
+        scroll-behavior: smooth;
+    }
+
+    /* Background video */
+    video#bgvid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -2;
+        object-fit: cover;
+        opacity: 0.75;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.55);
+        z-index: -1;
+    }
+
+    /* Header */
+    header {
+        background-color: rgba(216, 201, 184, 0.85);
+        color: #1a1a1a;
+        text-align: center;
+        padding: 25px 0;
+        font-size: 2em;
+        font-weight: bold;
+        border-bottom: 2px solid #c9b99a;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        backdrop-filter: blur(6px);
+    }
+
+    /* Layout container */
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 30px 20px;
+        gap: 20px;
+        flex-wrap: wrap; /* Makes it resizable */
+    }
+
+    /* Sidebar */
+    nav {
+        flex: 0 0 20%;
+        background-color: rgba(241, 226, 200, 0.85);
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 12px;
+        text-align: center;
+        color: #1a1a1a;
+        backdrop-filter: blur(4px);
+        min-width: 200px;
+    }
+
+    nav h3 {
+        font-weight: bold;
+        border-bottom: 2px solid #c9b99a;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        display: block;
+        color: #1a1a1a;
+        text-decoration: none;
+        padding: 10px 0;
+        margin: 8px 0;
+        background-color: #fffaf0;
+        border: 1px solid #cbb99e;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+    nav a:hover {
+        background-color: #c9b99a;
+        color: #fff;
+    }
+
+    /* Main */
+    main {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        box-sizing: border-box;
+        min-width: 300px;
+    }
+
+    /* Section styling */
+    .section {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        background-color: rgba(253, 250, 244, 0.9);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        flex-wrap: wrap; /* Resizable fix */
+    }
+
+    .section:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    .section img {
+        width: 280px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid #c9b99a;
+        max-width: 100%;
+    }
+
+    .section-content {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .section h2 {
+        margin-top: 0;
+        color: #2c1e14;
+    }
+
+    .section p {
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    /* Info block */
+    .info {
+        background-color: rgba(80, 50, 20, 0.85);
+        color: #f5f2ea;
+        padding: 25px;
+        border-radius: 12px;
+        line-height: 1.6;
+    }
+
+    .info h2 {
+        border-bottom: 2px solid #f5f2ea;
+        padding-bottom: 8px;
+        margin-top: 0;
+    }
+
+    /* Aside */
+    aside {
+        flex: 0 0 22%;
+        background-color: rgba(216, 201, 184, 0.9);
+        padding: 20px;
+        border-radius: 12px;
+        box-sizing: border-box;
+        min-width: 220px;
+    }
+
+    aside h3 {
+        text-align: center;
+        border-bottom: 2px solid #c9b99a;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    aside p {
+        text-align: justify;
+        line-height: 1.5;
+    }
+
+    /* Footer inside main */
+    main footer {
+        background-color: rgba(216, 201, 184, 0.85);
+        color: #1a1a1a;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9em;
+        margin-top: 30px;
+        border-top: 2px solid #c9b99a;
+        border-radius: 8px;
+        backdrop-filter: blur(4px);
+    }
+
+    /* Responsive */
+    @media (max-width: 950px) {
+        .flex-container {
+            flex-direction: column;
+        }
+
+        .section {
+            flex-direction: column;
+        }
+
+        .section img {
+            width: 100%;
+            height: auto;
+        }
+    }
+</style>
+</head>
+<body>
+<video autoplay muted loop id="bgvid">
+    <source src="bgvid.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<header>Visit Kashmir — Culture & Cuisine</header>
+
+<div class="flex-container">
+    <!-- Navigation -->
+    <nav>
+        <h3>Navigation</h3>
+        <a href="index_A2.html">🏠 Home</a>
+        <a href="page2_A2.html">📍 Attractions</a>
+        <a href="page3_A3.html">🎨 Culture & Cuisine</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="section">
+            <img src="royalwazwan.jpeg" alt="Wazwan Feast">
+            <div class="section-content">
+                <h2>The Royal Wazwan</h2>
+                <p>The heart of Kashmiri cuisine, Wazwan, is more than a meal—it’s a cultural ceremony. Traditionally served during weddings and celebrations, this multi-course feast showcases dishes like Rogan Josh, Yakhni, Rista, and Gushtaba. Each dish is cooked slowly with aromatic spices and presented with pride as a symbol of hospitality and community.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <img src="kashmirikahwa.jpeg" alt="Kashmiri Kahwa">
+            <div class="section-content">
+                <h2>Kashmiri Kahwa & Hospitality</h2>
+                <p>Kashmiri Kahwa, a fragrant tea brewed with saffron, almonds, and cardamom, reflects the warmth of the valley’s people. It’s often served to guests as a sign of respect and welcome. The ritual of sharing Kahwa represents the cherished Kashmiri value of <em>Mehman Nawazi</em>—the art of gracious hosting.</p>
+            </div>
+        </section>
+
+        <section class="info">
+            <h2>Artistry and Traditions</h2>
+            <p>Kashmir is a land where art breathes through every home. From intricate papier-mâché designs to fine Pashmina weaving, each craft tells a story of patience, beauty, and identity. Wood carving, embroidery, and handwoven carpets continue to thrive, supported by generations of artisans preserving their legacy.</p>
+        </section>
+
+        <section class="section">
+            <img src="pashnima.jpeg" alt="Pashmina Weaving">
+            <div class="section-content">
+                <h2>The Art of Pashmina</h2>
+                <p>Known globally for its unmatched softness, Kashmiri Pashmina is handwoven from fine goat wool found in the high Himalayas. The creation of a single shawl can take weeks or even months, showcasing the artisan’s devotion. Pashmina is not just fabric—it’s heritage wrapped in warmth.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <img src="kashmirifolkdance.jpeg" alt="Kashmiri Folk Dance">
+            <div class="section-content">
+                <h2>Folk Music & Dance</h2>
+                <p>Kashmiri culture is incomplete without its soulful music and folk dance forms like Rouf and Hafiza. These performances celebrate life, nature, and devotion, often performed during festivals and harvest seasons. The tunes of Rabab and Santoor echo through the valleys, connecting the past with the present.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <img src="kashmirihandicrafts.jpeg" alt="Kashmiri Handicrafts">
+            <div class="section-content">
+                <h2>Handicrafts & Heritage Markets</h2>
+                <p>Local bazaars in Srinagar and Pahalgam brim with handwoven carpets, walnut wood carvings, and embroidered shawls. These markets are more than places of trade—they are living museums preserving Kashmir’s artistic soul. Every handmade item carries a whisper of tradition and a touch of timeless elegance.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside>
+        <h3>Cultural Insights</h3>
+        <p>Kashmir’s traditions are rooted in unity and grace. Festivals like Eid, Navroz, and Baisakhi are celebrated with harmony, music, and feasts. Poetry of Habba Khatoon and Lal Ded continues to inspire generations, while every home glows with the warmth of friendship and faith.</p>
+    </aside>
+</div>
+
+<footer>© 2025 Visit Kashmir | All Rights Reserved</footer>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Kashmir - Home</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Georgia', serif;
+        color: #f8f8f8;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    video#bgvid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -2;
+        object-fit: cover;
+        opacity: 0.75;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: -1;
+    }
+
+    header {
+        background-color: rgba(216, 201, 184, 0.85);
+        color: #1a1a1a;
+        text-align: center;
+        padding: 28px 0 18px;
+        font-size: 2em;
+        font-weight: bold;
+        border-bottom: 2px solid #c9b99a;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        backdrop-filter: blur(6px);
+    }
+
+    .top-nav {
+        margin-top: 12px;
+        font-size: 0.75em;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .top-nav a {
+        display: inline-block;
+        color: #1a1a1a;
+        text-decoration: none;
+        margin: 0 5px;
+        padding: 5px 10px;
+        background-color: #fffaf0;
+        border: 1px solid #cbb99e;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+    .top-nav a:hover {
+        background-color: #c9b99a;
+        color: #fff;
+    }
+
+    .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 25px;
+        margin: 30px 20px;
+        flex-wrap: wrap;
+    }
+
+    nav {
+        flex: 0 0 20%;
+        background-color: rgba(241, 226, 200, 0.85);
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 12px;
+        text-align: center;
+        color: #1a1a1a;
+        backdrop-filter: blur(4px);
+        min-width: 250px;
+    }
+
+    .top-list h4 {
+        margin-bottom: 10px;
+        color: #1a1a1a;
+    }
+
+    .top-list ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .top-list li {
+        margin: 6px 0;
+    }
+
+    .top-list a {
+        background: none;
+        border: none;
+        color: #1a1a1a;
+        font-weight: bold;
+        padding: 0;
+    }
+
+    .top-list a:hover {
+        text-decoration: underline;
+    }
+
+    main {
+        flex: 1;
+        background: none;
+        padding: 30px;
+        color: #f8f8f8;
+        box-sizing: border-box;
+        min-width: 300px;
+    }
+
+    .place {
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .place img {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        border-radius: 10px;
+        border: 2px solid #f8f8f8;
+    }
+
+    .place.left img {
+        float: left;
+        margin-right: 20px;
+    }
+
+    .place.right img {
+        float: right;
+        margin-left: 20px;
+    }
+
+    .place h2 {
+        margin-top: 0;
+        color: #f8f8f8;
+    }
+
+    .place p {
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    .info {
+        clear: both;
+        color: #e8e8e8;
+        padding: 25px;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .info h2 {
+        margin-top: 0;
+        font-size: 1.8em;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 10px;
+    }
+
+    main footer {
+        background-color: rgba(216, 201, 184, 0.85);
+        color: #1a1a1a;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9em;
+        border-top: 2px solid #c9b99a;
+        backdrop-filter: blur(4px);
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1100px) {
+        header {
+            font-size: 1.6em;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .content-wrapper {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        nav, main {
+            width: 100%;
+        }
+        nav {
+            order: -1;
+        }
+        .place img {
+            float: none;
+            display: block;
+            margin: 0 auto 15px;
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        header {
+            font-size: 1.4em;
+            padding: 20px 0;
+        }
+        main {
+            padding: 20px;
+        }
+        .place h2, .info h2 {
+            font-size: 1.4em;
+        }
+        .top-nav a {
+            font-size: 0.9em;
+            margin: 4px 0;
+        }
+    }
+</style>
+</head>
+<body>
+<video autoplay muted loop id="bgvid">
+    <source src="bgvid.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<header>
+    Visit Kashmir — Paradise on Earth
+    <div class="top-nav">
+        <a href="index_A2.html">🏠 Home</a>
+        <a href="page2_A2.html">📍 Attractions</a>
+        <a href="page3_A2.html">🎨 Culture & Cuisine</a>
+    </div>
+</header>
+
+<div class="content-wrapper">
+    <nav>
+        <div class="top-list">
+            <h4>Top 5 Destinations</h4>
+            <ul>
+                <li><a href="#srinagar">Srinagar</a></li>
+                <li><a href="#gulmarg">Gulmarg</a></li>
+                <li><a href="#pahalgam">Pahalgam</a></li>
+                <li><a href="#sonmarg">Sonmarg</a></li>
+                <li><a href="#kupwara">Kupwara</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="srinagar" class="place left">
+            <img src="srinagar.jpeg" alt="Srinagar">
+            <h2>Srinagar</h2>
+            <p>Srinagar, often called the “Venice of the East,” lies gracefully on the banks of the Jhelum River. It is famous for its shimmering Dal Lake and Nigeen Lake, where vibrant houseboats and floating gardens paint a surreal picture. The Mughal gardens—Shalimar Bagh, Nishat Bagh, and Chashme Shahi—stand as symbols of love and design perfection. Visitors can experience the charm of old Srinagar through its narrow lanes, traditional handicraft markets, and the historic Jamia Masjid that echoes centuries of devotion.</p>
+            <p>During winter, the city wears a blanket of snow, creating a romantic and tranquil atmosphere. In spring, thousands of tulips bloom in Asia’s largest Tulip Garden, drawing tourists from around the world. The Shikara rides on Dal Lake offer an ethereal view of the surrounding mountains and sunset hues that make every visitor fall in love with Kashmir.</p>
+        </section>
+
+        <section class="info">
+            <h2>Why Kashmir is Famous</h2>
+            <p>Kashmir’s fame lies in its awe-inspiring natural beauty and its harmonious blend of cultures. The region is home to majestic peaks like Harmukh and Kolahoi, serene lakes, and endless meadows that shift colors with the seasons. Its lush apple orchards and saffron fields are an agricultural wonder, contributing significantly to India’s spice trade.</p>
+            <p>Beyond nature, Kashmir’s artistry is world-renowned—Pashmina shawls, handwoven carpets, wood carvings, and papier-mâché crafts tell stories of tradition and patience. Whether it’s adventure in the mountains, tranquility by the lakes, or indulgence in aromatic cuisine, Kashmir offers a world within itself.</p>
+        </section>
+
+        <section id="gulmarg" class="place right">
+            <img src="gulmarg.jpeg" alt="Gulmarg">
+            <h2>Gulmarg</h2>
+            <p>Gulmarg, meaning “Meadow of Flowers,” transforms into a white wonderland during winter and a green paradise in summer. It hosts the world’s second-highest operating cable car, the Gulmarg Gondola, offering a panoramic view of the snow-laden Pir Panjal range. The ski slopes attract professionals and beginners alike, while in summer, the meadows come alive with wildflowers and grazing ponies.</p>
+            <p>Besides skiing, Gulmarg is a favorite for golfing enthusiasts, housing one of the world’s highest golf courses. Its tranquil atmosphere, coupled with breathtaking views of Mount Apharwat, makes it one of Kashmir’s crown jewels.</p>
+        </section>
+
+        <section class="info">
+            <h2>The Rich History of Kashmir</h2>
+            <p>Kashmir’s recorded history spans over two millennia. It was once a significant center for learning under Buddhist rule, followed by the Hindu dynasties and later, the Islamic Sultanates and Mughal Empire. Each era contributed to its architecture and culture—ancient temples, royal gardens, shrines, and palaces still stand as reminders of its glorious past.</p>
+            <p>The Mughal emperors, especially Jahangir, often described Kashmir as a “Paradise on Earth.” Their passion for beauty led to the construction of elaborate gardens and palaces that remain timeless. Over centuries, Kashmir has preserved its identity, gracefully blending art, spirituality, and resilience.</p>
+        </section>
+
+        <section id="pahalgam" class="place left">
+            <img src="pahalgam.jpg" alt="Pahalgam">
+            <h2>Pahalgam</h2>
+            <p>Pahalgam, known as the “Valley of Shepherds,” is surrounded by dense pine forests, snow peaks, and gurgling rivers. It serves as the starting point for the holy Amarnath Yatra and a retreat for those seeking peace. Betaab Valley, named after a Bollywood film, offers pristine landscapes perfect for picnics, while Aru and Baisaran Valleys provide idyllic trekking and horseback riding trails.</p>
+            <p>The soothing sound of the Lidder River and the crisp mountain air make Pahalgam an ideal destination for rejuvenation. During winter, it turns into a quiet snowy wonderland where the rhythm of nature takes over.</p>
+        </section>
+
+        <section class="info">
+            <h2>Kashmir and Its Spices</h2>
+            <p>Kashmir’s spice culture is deeply intertwined with its identity. The saffron fields of Pampore produce the “red gold” of India—considered the world’s finest. Its deep crimson threads are used in delicacies, perfumes, and medicines. Cardamom, fennel, and cinnamon also play vital roles in traditional Kashmiri dishes, particularly in Wazwan—a grand multi-course meal symbolizing hospitality.</p>
+            <p>The aroma of spices fills every home, and the famous Kashmiri Kahwa, brewed with saffron and almonds, is more than just a drink—it’s a symbol of warmth and friendship.</p>
+        </section>
+
+        <section id="sonmarg" class="place right">
+            <img src="sonmarg.jpeg" alt="Sonmarg">
+            <h2>Sonmarg</h2>
+            <p>Sonmarg, the “Meadow of Gold,” lies along the Sindh River and offers magnificent views of glaciers and snowfields. It serves as the gateway to high-altitude treks like the Vishansar and Krishansar Lakes. The Thajiwas Glacier trek is a must-do for adventure seekers, offering panoramic sights of crystalline ice formations and alpine flowers.</p>
+            <p>During spring, Sonmarg’s meadows glow under golden sunlight, surrounded by towering peaks. The region is also a popular filming destination, adding cinematic charm to its natural splendor.</p>
+        </section>
+
+        <section class="info">
+            <h2>The Cultural Heritage of Kashmir</h2>
+            <p>Kashmir’s culture is a beautiful fusion of multiple influences—Persian, Central Asian, and Indian. The region’s hospitality is legendary; visitors are often treated like family. Wazwan feasts, folk songs, and traditional dances form an essential part of social gatherings.</p>
+            <p>Artisans continue to craft exquisite Pashmina shawls, walnut wood furniture, and delicate papier-mâché ornaments that have been passed down for generations. The spiritual aura of shrines like Hazratbal and Shankaracharya Temple adds to the region’s deep sense of peace and devotion.</p>
+        </section>
+
+        <section id="kupwara" class="place left">
+            <img src="kupwara.jpeg" alt="Kupwara">
+            <h2>Kupwara</h2>
+            <p>Kupwara, nestled in North Kashmir, remains one of the least-explored yet most beautiful districts. It’s home to Lolab Valley, often called “the land of love and beauty,” and Bangus Valley, a serene grassland surrounded by forested hills. The region is a paradise for trekkers, bird watchers, and nature photographers.</p>
+            <p>Kupwara’s untouched charm, winding rivers, and dense cedar forests offer a glimpse of Kashmir’s raw and unfiltered beauty. Its people live simple lives, deeply connected to their traditions, nature, and faith.</p>
+        </section>
+    </main>
+</div>
+
+<footer>
+    © 2025 Visit Kashmir | All Rights Reserved
+</footer>
+</body>
+</html>

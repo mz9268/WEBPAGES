@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Kashmir - Attractions & Adventures</title>
+<style>
+    /* Reset */
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Georgia', serif;
+        color: #1a1a1a;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    /* Background video */
+    video#bgvid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -2;
+        object-fit: cover;
+        opacity: 0.7;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
+
+    /* Header */
+    header {
+        background-color: #d8c9b8;
+        color: #1a1a1a;
+        text-align: center;
+        padding: 25px 0;
+        font-size: 2em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #c9b99a;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        backdrop-filter: blur(6px);
+    }
+
+    /* Flex Container */
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 30px 20px;
+        gap: 20px;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+
+    /* Navigation Sidebar */
+    nav {
+        flex: 0 0 20%;
+        background-color: rgba(241, 226, 200, 0.85);
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 12px;
+        text-align: center;
+        color: #1a1a1a;
+        backdrop-filter: blur(4px);
+        min-width: 250px;
+    }
+
+    nav h3 {
+        font-weight: bold;
+        border-bottom: 2px solid #c9b99a;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        display: block;
+        color: #1a1a1a;
+        text-decoration: none;
+        padding: 10px 0;
+        margin: 8px 0;
+        background-color: #fffaf0;
+        border: 1px solid #cbb99e;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: all 0.3s;
+        word-wrap: break-word;
+    }
+
+    nav a:hover {
+        background-color: #c9b99a;
+        color: #fff;
+    }
+
+    /* Main Section */
+    main {
+        flex: 1;
+        background-color: rgba(253, 250, 244, 0.9);
+        padding: 30px;
+        border-radius: 12px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        min-width: 300px;
+    }
+
+    /* Destination Grid Layout */
+    .dest-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .place {
+        flex: 1 1 calc(33.333% - 20px);
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .place img {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .place h2 {
+        margin: 10px 0;
+        color: #2c1e14;
+    }
+
+    .place p {
+        font-size: 0.95em;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    /* Info Section Between Rows */
+    .info {
+        background-color: rgba(80, 50, 20, 0.85);
+        color: #f5f2ea;
+        padding: 25px;
+        border-radius: 12px;
+        line-height: 1.6;
+    }
+
+    .info h2 {
+        margin-top: 0;
+        border-bottom: 2px solid #f5f2ea;
+        padding-bottom: 10px;
+    }
+
+    /* Right Sidebar */
+    aside {
+        flex: 0 0 22%;
+        background-color: rgba(216, 201, 184, 0.9);
+        padding: 20px;
+        border-radius: 12px;
+        box-sizing: border-box;
+        min-width: 250px;
+    }
+
+    aside h3 {
+        text-align: center;
+        border-bottom: 2px solid #c9b99a;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    aside p {
+        text-align: justify;
+        line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #d8c9b8;
+        color: #1a1a1a;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9em;
+        margin-top: 30px;
+        border-top: 2px solid #c9b99a;
+        border-radius: 8px;
+        backdrop-filter: blur(4px);
+        word-wrap: break-word;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+        .flex-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        nav, aside, main {
+            width: 100%;
+            min-width: unset;
+        }
+
+        nav {
+            order: -1;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .dest-row {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .place {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .place img {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        header {
+            font-size: 1.5em;
+            padding: 18px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        nav a {
+            font-size: 0.9em;
+            padding: 8px;
+        }
+
+        .info h2 {
+            font-size: 1.3em;
+        }
+    }
+</style>
+</head>
+<body>
+    <video autoplay muted loop id="bgvid">
+        <source src="bgvid.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <header>Visit Kashmir — Attractions and Activities </header>
+
+    <div class="flex-container">
+        <!-- Left Navigation Sidebar -->
+        <nav>
+            <h3>Navigation</h3>
+            <a href="index_A2.html">🏠 Home</a>
+            <a href="page2_A2.html">📍 Attractions</a>
+            <a href="page3_A2.html">🎨 Culture & Cuisine</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <!-- First Row -->
+            <div class="dest-row">
+                <section id="dal" class="place">
+                    <img src="dallake.jpeg" alt="Dal Lake">
+                    <h2>Dal Lake</h2>
+                    <p>Known as the “Jewel in the crown of Kashmir,” Dal Lake’s serene waters and floating gardens are the soul of Srinagar. Shikara rides and houseboats make this one of India’s most picturesque destinations.</p>
+                </section>
+
+                <section id="gulmarg" class="place">
+                    <img src="gulmarg.jpeg" alt="Gulmarg">
+                    <h2>Gulmarg</h2>
+                    <p>Adventure hub of Kashmir featuring skiing, snowboarding, and Asia’s highest cable car. Its lush meadows and snow-covered slopes attract both thrill-seekers and peace lovers alike.</p>
+                </section>
+
+                <section id="pahalgam" class="place">
+                    <img src="pahalgam.jpg" alt="Pahalgam">
+                    <h2>Pahalgam</h2>
+                    <p>The Valley of Shepherds, famous for river rafting, pine forests, and scenic views. It’s also the starting point for the holy Amarnath Yatra pilgrimage.</p>
+                </section>
+            </div>
+
+            <!-- Info Section Between Rows -->
+            <section class="info">
+                <h2>Adventure Beyond Beauty</h2>
+                <p>Kashmir isn’t just about breathtaking landscapes; it’s also about adventure. From skiing on Gulmarg’s snowy peaks to trekking the glacier trails of Sonmarg, the region offers activities that combine thrill and tranquility. Its natural charm and vibrant culture make every journey unforgettable.</p>
+            </section>
+
+            <!-- Second Row -->
+            <div class="dest-row">
+                <section id="sonmarg" class="place">
+                    <img src="sonmarg.jpeg" alt="Sonmarg">
+                    <h2>Sonmarg</h2>
+                    <p>“The Meadow of Gold,” surrounded by majestic glaciers and alpine flowers. A must-visit for trekkers heading toward Ladakh and those seeking pristine mountain beauty.</p>
+                </section>
+
+                <section id="tulip" class="place">
+                    <img src="tulipgarden.jpeg" alt="Tulip Garden">
+                    <h2>Tulip Garden</h2>
+                    <p>Asia’s largest tulip garden with over a million blooms every spring. A colorful celebration of Kashmir’s natural beauty and cultural vibrance.</p>
+                </section>
+
+                <section id="betaab" class="place">
+                    <img src="betaabvalley.jpeg" alt="Betaab Valley">
+                    <h2>Betaab Valley</h2>
+                    <p>Named after a Bollywood film, this valley lies near Pahalgam and is known for its lush meadows and crystal-clear streams. Perfect for picnics and photography lovers.</p>
+                </section>
+            </div>
+
+            <!-- Footer now placed inside main -->
+            <footer>© 2025 Visit Kashmir | Designed for ISTE 140 - Fall 2025</footer>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside>
+            <h3>Travel Insights</h3>
+            <p>The ideal time to visit Kashmir is from March to October. Summer brings vibrant flowers, while winter turns it into a snowy paradise. Don’t miss traditional markets for handicrafts, and enjoy local dishes like Rogan Josh and Yakhni with saffron tea for a complete experience.</p>
+        </aside>
+    </div>
+</body>
+</html>
